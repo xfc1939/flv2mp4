@@ -4,6 +4,7 @@
 
 #include "Box.h"
 #include <strstream>
+#include <cstdint>
 
 Box::Box(const std::string &type)
     : type_(type)

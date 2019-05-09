@@ -8,10 +8,13 @@
 int main(int argc, char* argv[]) {
 
     std::cout << "hello" << std::endl;
-    std::strstream str;
-    str << int (1) << int (0) << int (1);
-    std::cout << str.str();
-    std::string tmpStr = str.str();
-    printf("%x", tmpStr[0]);
+    std::string str;
+    str.push_back(1);
+    str.push_back(0);
+    str.push_back(1);
+    str.push_back('1');
+    std::cout << str << std::endl;
+    printf("%x", str[3]);
+    printf("%x", str[0]);
     return 0;
 }
