@@ -3,18 +3,14 @@
 //
 
 #include <iostream>
-#include <strstream>
+#include <string>
+#include "src/Boxes.h"
 
 int main(int argc, char* argv[]) {
 
     std::cout << "hello" << std::endl;
-    std::string str;
-    str.push_back(1);
-    str.push_back(0);
-    str.push_back(1);
-    str.push_back('1');
-    std::cout << str << std::endl;
-    printf("%x", str[3]);
-    printf("%x", str[0]);
+    Box *box = new FtypBox;
+    std::cout << box->build();
+
     return 0;
 }

@@ -3,7 +3,8 @@
 //
 
 #include "Box.h"
-#include <strstream>
+#include "Utils.h"
+#include <string>
 #include <cstdint>
 
 Box::Box(const std::string &type)
@@ -11,7 +12,7 @@ Box::Box(const std::string &type)
 {
 
 }
-void Box::addChildeBox(Box *box) {
+void Box::addChildBox(Box *box) {
     if (box) {
         boxLists_.push_back(box);
         size_ += box->size();
@@ -19,14 +20,21 @@ void Box::addChildeBox(Box *box) {
 }
 
 std::string Box::build() {
-    std::strstream strstream;
+    std::string str;
     if (size_ > UINT32_MAX) {
-        strstream << 1;
-        //strstream << _
+        Utils::write32(str, 1);
     } else {
-        strstream << static_cast<uint32_t>(size_);
+        Utils::write32(str, size_);
     }
-    return strstream.str();
+    str += type_;
+    if (size_ > UINT32_MAX){
+        Utils::write64(str, size_);
+    }
+    str += content_;
+    for(auto box : boxLists_) {
+        str += box->build();
+    }
+    return str;
 }
 
 uint64_t Box::size() const {
@@ -40,6 +48,3 @@ void Box::addContent(const std::string &content) {
 std::string Box::type() const {
     return type_;
 }
-
-
-

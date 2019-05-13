@@ -16,13 +16,9 @@ public:
 
     std::string build() override {
         std::string str;
-        Utils::write8(str, 0x00);
-        Utils::write8(str, 0x00);
-        Utils::write8(str, 0x20);
-        Utils::write8(str, 0x00);
-        
-        str.push_back("isomiso2avc1mp41");
-        addContent(stream.str());
+        Utils::write32(str, 0x00002000);
+        str += "isomiso2avc1mp41";
+        addContent(str);
         return Box::build();
     }
 };

@@ -15,7 +15,7 @@ public:
     virtual ~Box() = default;
 
     // 此方法针对容器类box，内部将不会判断是否当前box可否增加子box
-    void addChildeBox(Box *box);
+    void addChildBox(Box *box);
 
     // 构建box，得到box中的内容
     virtual std::string build();

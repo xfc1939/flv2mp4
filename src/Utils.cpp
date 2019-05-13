@@ -1,4 +1,3 @@
-#include "StdAfx.h"
 #include "Utils.h"
 #include <stdio.h>
 
@@ -27,4 +26,10 @@ void Utils::write32(std::string &str, int32_t value)
 {
 	Utils::write16(str, (value & 0xffff0000) >> 16);
 	Utils::write16(str, (value & 0x0000ffff));
+}
+
+void Utils::write64(std::string &str, int64_t value) 
+{
+	Utils::write32(str, (value & 0xffffffff00000000) >> 32);
+	Utils::write32(str, (value & 0x00000000ffffffff) >> 32);
 }
