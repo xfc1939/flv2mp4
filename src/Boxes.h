@@ -13,14 +13,20 @@ class FtypBox : public Box {
 public:
     FtypBox() : Box("fype"){}
     ~FtypBox() override = default;
-
-    std::string build() override {
-        std::string str;
-        Utils::write32(str, 0x00002000);
-        str += "isomiso2avc1mp41";
-        addContent(str);
-        return Box::build();
-    }
+public:
+    std::string build() override;
 };
 
+// mdat
+class MdatBox : public Box {
+public:
+};
+
+// moov container box
+class MvhdBox : public Box{
+
+};
+
+// trak container box
+class 
 #endif //FLV2MP4_BOXES_H

@@ -7,8 +7,11 @@
 #include <string>
 #include <cstdint>
 
+const uint32_t MinSize = 0;
+
 Box::Box(const std::string &type)
     : type_(type)
+    , size_(MinSize)
 {
 
 }
@@ -28,6 +31,7 @@ std::string Box::build() {
     }
     str += type_;
     if (size_ > UINT32_MAX){
+        size_ += 8;
         Utils::write64(str, size_);
     }
     str += content_;
@@ -43,6 +47,7 @@ uint64_t Box::size() const {
 
 void Box::addContent(const std::string &content) {
     content_ += content;
+    size_ += content.size();
 }
 
 std::string Box::type() const {
