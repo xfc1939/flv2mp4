@@ -34,19 +34,31 @@ public:
 public:
     std::string build() override;
     void setTimeScale(uint32_t scale);
+
     void setTime(uint32_t createTime, uint32_t modifyTime);
-    void setRate(uint32_t rate);
-    void setVolume(uint32_t volume);
+
+    void setDuration(uint32_t duration);
+
+    // 格式16.16，rate是整数部分，而rateF是小数部分
+    void setRate(uint16_t rateI, uint16_t rateF);
+
+    // 格式8.8，volumeI是整数部分，而volumeF是小数部分
+    void setVolume(uint8_t volumeI, uint8_t volumeF);
+
+
+    void setNextTrackId_(uint32_t nextTrackId);
+
     void setMatrix(const std::vector<uint32_t> &matrix);
     
 private:
     uint32_t timeScale_;
     uint32_t rate_;
-    uint32_t volume_;
+    uint16_t volume_;
+    uint32_t nextTrackId_;
 
     uint64_t duration_;
-    uint64_t createTime;
-    uint64_t modifyTime;
+    uint64_t createTime_;
+    uint64_t modifyTime_;
 
     std::vector<uint32_t> matrix_;
 };

@@ -6,8 +6,8 @@
 #define FLV2MP4_BOX_H
 
 #include <string>
-#include <stdint.h>
-#include <list>
+#include <cstdint>
+#include <vector>
 
 class Box {
 public:
@@ -40,7 +40,7 @@ protected:
     uint64_t size_;
 
     // 保存child box指针
-    std::list<Box*> boxLists_;
+    std::vector<Box*> boxLists_;
 };
 
 class FullBox : public Box {

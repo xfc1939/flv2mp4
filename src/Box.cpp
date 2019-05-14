@@ -24,6 +24,7 @@ void Box::addChildBox(Box *box) {
 
 std::string Box::build() {
     std::string str;
+    size_ += 8;
     if (size_ > UINT32_MAX) {
         Utils::writeU32(str, 1);
     } else {
@@ -67,6 +68,7 @@ std::string FullBox::build()
     uint32_t ver_flags = ver_;
     ver_flags = (ver_flags << 24) | flags_;
     Utils::write32(str, ver_flags);
+    size_ += 4;
     content_ = str + content_;
     return Box::build();
 }
