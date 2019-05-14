@@ -25,14 +25,14 @@ void Box::addChildBox(Box *box) {
 std::string Box::build() {
     std::string str;
     if (size_ > UINT32_MAX) {
-        Utils::write32(str, 1);
+        Utils::writeU32(str, 1);
     } else {
-        Utils::write32(str, size_);
+        Utils::writeU32(str, size_);
     }
     str += type_;
     if (size_ > UINT32_MAX){
         size_ += 8;
-        Utils::write64(str, size_);
+        Utils::writeU64(str, size_);
     }
     str += content_;
     for(auto box : boxLists_) {
@@ -52,4 +52,21 @@ void Box::addContent(const std::string &content) {
 
 std::string Box::type() const {
     return type_;
+}
+
+// FullBox
+
+FullBox::FullBox(const std::string & type, uint8_t ver, uint32_t flags)
+    : Box(type)
+    , ver_(ver)
+{}
+
+std::string FullBox::build()
+{
+    std::string str;
+    uint32_t ver_flags = ver_;
+    ver_flags = (ver_flags << 24) | flags_;
+    Utils::write32(str, ver_flags);
+    content_ = str + content_;
+    return Box::build();
 }

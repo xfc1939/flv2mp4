@@ -43,5 +43,21 @@ protected:
     std::list<Box*> boxLists_;
 };
 
+class FullBox : public Box {
+public:
+    FullBox(const std::string &type, uint8_t ver = 0, uint32_t flags = 0);
+    ~FullBox() = default;
+
+public:
+    std::string build() override;
+
+protected:
+    // 保存box的版本
+    uint8_t ver_;
+
+    // 保存box的flag位
+    uint32_t flags_;
+};
+
 
 #endif //FLV2MP4_BOX_H

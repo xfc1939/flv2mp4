@@ -7,6 +7,7 @@
 
 #include "Utils.h"
 #include "Box.h"
+#include <vector>
 
 class FtypBox : public Box {
 public:
@@ -26,13 +27,28 @@ public:
 };
 
 // moov container box
-class MvhdBox : public Box{
+class MvhdBox : public FullBox{
 public:
-    MvhdBox() : Box("mvhd"){}
+    MvhdBox();
     ~MvhdBox() override = default;
 public:
     std::string build() override;
+    void setTimeScale(uint32_t scale);
+    void setTime(uint32_t createTime, uint32_t modifyTime);
+    void setRate(uint32_t rate);
+    void setVolume(uint32_t volume);
+    void setMatrix(const std::vector<uint32_t> &matrix);
+    
+private:
+    uint32_t timeScale_;
+    uint32_t rate_;
+    uint32_t volume_;
 
+    uint64_t duration_;
+    uint64_t createTime;
+    uint64_t modifyTime;
+
+    std::vector<uint32_t> matrix_;
 };
 
 //// trak container box

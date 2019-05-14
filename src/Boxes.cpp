@@ -8,7 +8,7 @@
 std::string FtypBox::build()
 {
     std::string str;
-    Utils::write32(str, 0x00002000);
+    Utils::writeU32(str, 0x00002000);
     str += "isomiso2avc1mp41";
     addContent(str);
     return Box::build();
@@ -20,6 +20,16 @@ std::string MdatBox::build() {
 }
 
 // Mvhd box
+MvhdBox::MvhdBox()
+    : FullBox("mvhd")
+    , timeScale_(1000)
+    , rate_(1)
+    
+
 std::string MvhdBox::build() {
     return std::string();
+}
+
+void MvhdBox::setTimeScale(uint32_t scale) {
+    timeScale_ = scale;
 }
