@@ -4,6 +4,7 @@
 
 #include "Boxes.h"
 
+// Ftyp box
 std::string FtypBox::build()
 {
     std::string str;
@@ -11,4 +12,14 @@ std::string FtypBox::build()
     str += "isomiso2avc1mp41";
     addContent(str);
     return Box::build();
+}
+
+// Mdat box
+std::string MdatBox::build() {
+    return std::string();
+}
+
+// Mvhd box
+std::string MvhdBox::build() {
+    return std::string();
 }

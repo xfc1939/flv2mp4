@@ -7,7 +7,6 @@
 
 #include "Utils.h"
 #include "Box.h"
-#include <strstream>
 
 class FtypBox : public Box {
 public:
@@ -20,13 +19,22 @@ public:
 // mdat
 class MdatBox : public Box {
 public:
+    MdatBox() : Box("mdat"){}
+    ~MdatBox() override = default;
+public:
+    std::string build() override;
 };
 
 // moov container box
 class MvhdBox : public Box{
+public:
+    MvhdBox() : Box("mvhd"){}
+    ~MvhdBox() override = default;
+public:
+    std::string build() override;
 
 };
 
-// trak container box
-class 
+//// trak container box
+//class
 #endif //FLV2MP4_BOXES_H
