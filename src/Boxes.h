@@ -63,6 +63,18 @@ private:
     std::vector<uint32_t> matrix_;
 };
 
-//// trak container box
-//class
+// trak container box
+
+class TkhdBox : public  FullBox {
+public:
+    TkhdBox(uint8_t ver = 0, uint32_t flags = 0);
+
+private:
+    uint64_t createTime_;
+    uint64_t modifyTime_;
+    uint64_t duration_;
+    uint32_t trackId_;
+    uint16_t layer_;
+
+};
 #endif //FLV2MP4_BOXES_H

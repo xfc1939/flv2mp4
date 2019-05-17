@@ -99,3 +99,10 @@ void MvhdBox::setMatrix(const std::vector<uint32_t> &matrix) {
     matrix_.clear();
     matrix_.assign(matrix.begin(), matrix.end());
 }
+
+// track start.....
+TkhdBox::TkhdBox(uint8_t ver, uint32_t flags)
+    : FullBox("tkhd", ver, flags)
+{
+
+}
