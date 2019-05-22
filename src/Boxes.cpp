@@ -74,7 +74,7 @@ void MvhdBox::setTimeScale(uint32_t scale) {
     timeScale_ = scale;
 }
 
-void MvhdBox::setTime(uint32_t createTime, uint32_t modifyTime) {
+void MvhdBox::setTime(uint64_t createTime, uint64_t modifyTime) {
     createTime_ = createTime;
     modifyTime_ = modifyTime;
 }
@@ -105,4 +105,37 @@ TkhdBox::TkhdBox(uint8_t ver, uint32_t flags)
     : FullBox("tkhd", ver, flags)
 {
 
+}
+
+std::string TkhdBox::build() {
+    std::string str;
+
+    if(ver_ == 1) {
+        Utils::writeU64(str, createTime_);
+        Utils::writeU64(str, modifyTime_);
+        Utils::writeU32(str, trackId_);
+
+    } else {
+
+    }
+
+    addContent(str);
+    return FullBox::build();
+}
+
+void TkhdBox::setTime(uint64_t createTime, uint64_t modifyTime) {
+    createTime_ = createTime;
+    modifyTime_ = modifyTime;
+}
+
+void TkhdBox::setDuration(uint64_t duration) {
+    duration_ = duration;
+}
+
+void TkhdBox::setTrackId(uint32_t trackId) {
+    trackId_ = trackId;
+}
+
+void TkhdBox::setLayer(uint16_t layer) {
+    layer_ = layer;
 }

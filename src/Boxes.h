@@ -35,7 +35,7 @@ public:
     std::string build() override;
     void setTimeScale(uint32_t scale);
 
-    void setTime(uint32_t createTime, uint32_t modifyTime);
+    void setTime(uint64_t createTime, uint64_t modifyTime);
 
     void setDuration(uint32_t duration);
 
@@ -68,6 +68,13 @@ private:
 class TkhdBox : public  FullBox {
 public:
     TkhdBox(uint8_t ver = 0, uint32_t flags = 0);
+
+    std::string build() override;
+
+    void setTime(uint64_t createTime, uint64_t modifyTime);
+    void setDuration(uint64_t duration);
+    void setTrackId(uint32_t trackId);
+    void setLayer(uint16_t layer);
 
 private:
     uint64_t createTime_;
